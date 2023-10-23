@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TesteController;
+use App\Http\Controllers\StudentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,4 +27,4 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::resource('/teste', TesteController::class);
+Route::resource('/student', StudentController::class);
