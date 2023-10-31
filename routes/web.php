@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TesteController;
+use App\Http\Controllers\StudentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,4 +27,12 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::resource('/teste', TesteController::class);
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::resource('/student', StudentController::class);
+});
+
+//Route::resource('/student', StudentController::class);
