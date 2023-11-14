@@ -29,6 +29,7 @@
                     <form method="POST" action="{{ route('student.destroy', $student) }}" class="inline-block">
                         @csrf
                         @method('DELETE')
+                        
                         @can('manage student')
                             <button type="submit" class="btn-danger rounded">Excluir</button>
                         @endcan
