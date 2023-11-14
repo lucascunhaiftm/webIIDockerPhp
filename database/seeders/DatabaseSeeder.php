@@ -27,5 +27,6 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('regularuser'),
         ]);
         $this->call([StudentSeeder::class]);
+        $this->call([AdminUserSeeder::class]);
     }
 }
