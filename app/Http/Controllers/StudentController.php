@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StudentStoreRequest;
+use App\Http\Requests\StudentUpdateRequest;
 use App\Models\Student;
 
 class StudentController extends Controller
@@ -13,7 +14,7 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::all();
-        return view('/student/student')->with('students', $students);
+        return view('student.index')->with('students', $students);
     }
 
     /**
@@ -21,15 +22,17 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('student.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StudentStoreRequest $request)
     {
-        //
+        Student::create($request->validated());
+ 
+        return redirect()->route('student.index');
     }
 
     /**
@@ -37,7 +40,7 @@ class StudentController extends Controller
      */
     public function show(string $id)
     {
-        return "aqui";
+        //
     }
 
     /**
@@ -45,15 +48,19 @@ class StudentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $student = Student::find($id);
+        return view('student.create')->with('student', $student);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StudentUpdateRequest $request, string $id)
     {
-        //
+        $student = Student::find($id);
+        $student->update($request->validated());
+ 
+        return redirect()->route('student.index');
     }
 
     /**
@@ -61,6 +68,9 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $student = Student::find($id);
+        $student->delete();
+ 
+        return redirect()->route('student.index');
     }
 }
