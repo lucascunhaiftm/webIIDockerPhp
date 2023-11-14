@@ -31,6 +31,7 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
+    'role:Administrator',
 ])->group(function () {
     Route::resource('/student', StudentController::class);
 });
