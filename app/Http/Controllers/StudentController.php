@@ -57,6 +57,7 @@ class StudentController extends Controller
      */
     public function update(StudentUpdateRequest $request, string $id)
     {
+        $this->authorize('manage student');
         $student = Student::find($id);
         $student->update($request->validated());
  
