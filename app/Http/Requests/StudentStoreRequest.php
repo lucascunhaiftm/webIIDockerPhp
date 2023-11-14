@@ -24,8 +24,8 @@ class StudentStoreRequest extends FormRequest
         return [
             'name'=> 'required|max:255',
             'email'=> 'required|email|max:80',
-            'celphone'=> 'required|digits:11',
-            'registration_number' => 'required|digits:8',
+            'celphone'=> 'required|integer',
+            'registration_number' => 'required|integer',
         ];
     }
 }
